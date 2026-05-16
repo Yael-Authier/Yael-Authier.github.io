@@ -1,506 +1,635 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Yael Authier | Growth, Operations & Data</title>
+<title>Yael Authier | Growth, Operations & Data</title>
 
-  <style>
+<style>
 
-    :root{
-      --bg:#050816;
-      --bg-soft:#0b1026;
-      --card:#10172f;
-      --card2:#151b3d;
-      --text:#f8fafc;
-      --muted:#cbd5e1;
-      --accent:#7dd3fc;
-      --accent2:#c084fc;
-      --accent3:#f472b6;
-      --border:#24304f;
-    }
+:root{
+  --bg:#050816;
+  --bg-soft:#0b1026;
+  --card:#10172f;
+  --card2:#151b3d;
+  --text:#f8fafc;
+  --muted:#cbd5e1;
+  --accent:#7dd3fc;
+  --accent2:#c084fc;
+  --accent3:#f472b6;
+  --border:#24304f;
+}
 
-    *{
-      box-sizing:border-box;
-    }
+*{
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
 
-    body{
-      margin:0;
-      font-family:Arial, sans-serif;
-      background:
-      radial-gradient(circle at top left, rgba(192,132,252,.18), transparent 30%),
-      radial-gradient(circle at top right, rgba(125,211,252,.15), transparent 25%),
-      var(--bg);
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:
+  radial-gradient(circle at top left, rgba(192,132,252,.18), transparent 30%),
+  radial-gradient(circle at top right, rgba(125,211,252,.15), transparent 25%),
+  var(--bg);
 
-      color:var(--text);
-      line-height:1.7;
-    }
+  color:var(--text);
+  line-height:1.7;
+}
 
-    header{
-      min-height:90vh;
-      display:flex;
-      align-items:center;
-      padding:80px 10%;
-    }
+header{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:80px 10%;
+  position:relative;
+  overflow:hidden;
+}
 
-    .hero{
-      max-width:1000px;
-    }
+header::before{
+  content:"";
+  position:absolute;
+  width:700px;
+  height:700px;
+  background:radial-gradient(circle, rgba(125,211,252,.15), transparent 70%);
+  top:-200px;
+  right:-200px;
+}
 
-    .eyebrow{
-      color:var(--accent);
-      font-weight:bold;
-      letter-spacing:2px;
-      margin-bottom:20px;
-      text-transform:uppercase;
-    }
+.hero{
+  max-width:1050px;
+  position:relative;
+  z-index:2;
+}
 
-    h1{
-      font-size:72px;
-      margin:0 0 15px;
-      line-height:1;
-    }
+.hero img{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid rgba(255,255,255,.12);
+  margin-bottom:30px;
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
+}
 
-    h2{
-      font-size:30px;
-      color:var(--muted);
-      font-weight:400;
-      margin-bottom:25px;
-    }
+.eyebrow{
+  color:var(--accent);
+  font-weight:bold;
+  letter-spacing:2px;
+  margin-bottom:20px;
+  text-transform:uppercase;
+}
 
-    .hero p{
-      font-size:20px;
-      color:var(--muted);
-      max-width:850px;
-    }
+h1{
+  font-size:78px;
+  margin:0 0 15px;
+  line-height:1;
+}
 
-    .buttons{
-      margin-top:35px;
-      display:flex;
-      gap:15px;
-      flex-wrap:wrap;
-    }
+h2{
+  font-size:30px;
+  color:var(--muted);
+  font-weight:400;
+  margin-bottom:25px;
+}
 
-    .btn{
-      display:inline-block;
-      padding:14px 20px;
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:bold;
-      border:1px solid var(--border);
+.hero p{
+  font-size:20px;
+  color:var(--muted);
+  max-width:850px;
+}
 
-      background:
-      linear-gradient(135deg,
-      rgba(125,211,252,.15),
-      rgba(192,132,252,.15));
+.buttons{
+  margin-top:35px;
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+}
 
-      color:white;
-    }
+.btn{
+  display:inline-block;
+  padding:14px 22px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:bold;
+  border:1px solid var(--border);
 
-    .btn.secondary{
-      background:transparent;
-      color:var(--accent);
-    }
+  background:
+  linear-gradient(135deg,
+  rgba(125,211,252,.15),
+  rgba(192,132,252,.15));
 
-    section{
-      padding:70px 10%;
-      max-width:1200px;
-      margin:auto;
-    }
+  color:white;
 
-    h3{
-      font-size:34px;
-      margin-bottom:15px;
-    }
+  transition:.3s;
+}
 
-    .subtitle{
-      color:var(--muted);
-      margin-bottom:35px;
-      max-width:850px;
-    }
+.btn:hover{
+  transform:translateY(-3px);
+}
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:24px;
-    }
+.btn.secondary{
+  background:transparent;
+  color:var(--accent);
+}
 
-    .card{
-      background:
-      linear-gradient(180deg,
-      rgba(21,27,61,.95),
-      rgba(10,15,35,.95));
+section{
+  padding:80px 10%;
+  max-width:1250px;
+  margin:auto;
+}
 
-      border:1px solid var(--border);
+h3{
+  font-size:36px;
+  margin-bottom:15px;
+}
 
-      border-radius:22px;
-      padding:28px;
+.subtitle{
+  color:var(--muted);
+  margin-bottom:35px;
+  max-width:850px;
+}
 
-      box-shadow:0 20px 45px rgba(0,0,0,.28);
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
 
-    .card h4{
-      margin-top:0;
-      color:var(--accent);
-      font-size:22px;
-    }
+.card{
+  background:
+  linear-gradient(180deg,
+  rgba(21,27,61,.95),
+  rgba(10,15,35,.95));
 
-    .card p,
-    .card li{
-      color:var(--muted);
-    }
+  border:1px solid var(--border);
 
-    ul{
-      padding-left:20px;
-    }
+  border-radius:24px;
+  padding:28px;
 
-    .timeline{
-      display:grid;
-      gap:20px;
-    }
+  box-shadow:0 20px 45px rgba(0,0,0,.28);
 
-    .role{
-      border-left:3px solid var(--accent2);
-      padding-left:22px;
-    }
+  transition:.3s;
+}
 
-    .role h4{
-      margin-bottom:5px;
-      color:white;
-    }
+.card:hover{
+  transform:translateY(-5px);
+}
 
-    .date{
-      color:var(--accent);
-      font-size:14px;
-      font-weight:bold;
-      margin-bottom:12px;
-    }
+.card h4{
+  margin-top:0;
+  color:var(--accent);
+  font-size:22px;
+}
 
-    .tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
+.card p,
+.card li{
+  color:var(--muted);
+}
 
-    .tag{
-      background:rgba(125,211,252,.10);
-      border:1px solid rgba(125,211,252,.25);
+ul{
+  padding-left:20px;
+}
 
-      color:#e0f2fe;
+.timeline{
+  display:grid;
+  gap:20px;
+}
 
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:14px;
-    }
+.role{
+  border-left:3px solid var(--accent2);
+  padding-left:22px;
+}
 
-    a{
-      color:var(--accent);
-      text-decoration:none;
-    }
+.role h4{
+  margin-bottom:5px;
+  color:white;
+}
 
-    a:hover{
-      text-decoration:underline;
-    }
+.date{
+  color:var(--accent);
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
 
-    footer{
-      padding:35px;
-      text-align:center;
-      color:var(--muted);
-      border-top:1px solid var(--border);
-      background:#030712;
-    }
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
 
-    @media(max-width:700px){
+.tag{
+  background:rgba(125,211,252,.10);
+  border:1px solid rgba(125,211,252,.25);
 
-      h1{
-        font-size:48px;
-      }
+  color:#e0f2fe;
 
-      h2{
-        font-size:24px;
-      }
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:14px;
+}
 
-      header,
-      section{
-        padding-left:7%;
-        padding-right:7%;
-      }
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
+}
 
-    }
+.stat{
+  text-align:center;
+  padding:30px;
+  border-radius:24px;
+  background:linear-gradient(180deg, rgba(21,27,61,.95), rgba(10,15,35,.95));
+  border:1px solid var(--border);
+}
 
-  </style>
+.stat h4{
+  font-size:42px;
+  margin:0;
+  color:var(--accent);
+}
 
+.stat p{
+  color:var(--muted);
+}
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:24px;
+}
+
+.project{
+  background:linear-gradient(180deg, rgba(21,27,61,.95), rgba(10,15,35,.95));
+  border:1px solid var(--border);
+  border-radius:24px;
+  overflow:hidden;
+}
+
+.project img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.project-content{
+  padding:24px;
+}
+
+a{
+  color:var(--accent);
+  text-decoration:none;
+}
+
+a:hover{
+  text-decoration:underline;
+}
+
+footer{
+  padding:35px;
+  text-align:center;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  background:#030712;
+}
+
+@media(max-width:700px){
+
+  h1{
+    font-size:52px;
+  }
+
+  h2{
+    font-size:24px;
+  }
+
+  header,
+  section{
+    padding-left:7%;
+    padding-right:7%;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
 
-  <div class="hero">
+<div class="hero">
 
-    <div class="eyebrow">
-      Growth · Operations · Customer Experience · Data
-    </div>
+<img src="avatar.png" alt="Yael Authier">
 
-    <h1>Yael Authier</h1>
+<div class="eyebrow">
+Growth · Operations · Customer Experience · Data
+</div>
 
-    <h2>
-      Growth Strategist & Business Operations con foco en performance,
-      loyalty, customer experience y toma de decisiones basada en datos.
-    </h2>
+<h1>Yael Authier</h1>
 
-    <p>
-      Combino experiencia real de operación, aperturas, growth,
-      fidelización y analytics con herramientas de Data Science,
-      automatización y MLOps para optimizar negocios y performance.
-    </p>
+<h2>
+Growth Strategist & Business Operations con foco en performance,
+loyalty, customer experience y toma de decisiones basada en datos.
+</h2>
 
-    <div class="buttons">
+<p>
+Combino experiencia real de operación, aperturas, growth,
+fidelización y analytics con herramientas de Data Science,
+automatización y MLOps para optimizar negocios y performance.
+</p>
 
-      <a class="btn"
-      href="https://github.com/Yael-Authier/proyecto-integrador-5"
-      target="_blank">
-      Ver proyecto MLOps
-      </a>
+<div class="buttons">
 
-      <a class="btn secondary"
-      href="https://pi-m5-riesgo-crediticio.onrender.com/docs"
-      target="_blank">
-      API deployada
-      </a>
+<a class="btn"
+href="https://github.com/Yael-Authier/proyecto-integrador-5"
+target="_blank">
+Proyecto MLOps
+</a>
 
-      <a class="btn secondary"
-      href="https://www.linkedin.com/in/yael-authier/"
-      target="_blank">
-      LinkedIn
-      </a>
+<a class="btn secondary"
+href="https://pi-m5-riesgo-crediticio.onrender.com/docs"
+target="_blank">
+API deployada
+</a>
 
-    </div>
+<a class="btn secondary"
+href="https://www.linkedin.com/in/yael-authier/"
+target="_blank">
+LinkedIn
+</a>
 
-  </div>
+</div>
+
+</div>
 
 </header>
 
 <section>
 
-  <h3>Perfil profesional</h3>
+<h3>Impacto & métricas</h3>
 
-  <p class="subtitle">
-    Profesional orientada a negocio con experiencia en crecimiento,
-    operaciones y optimización de performance. Trabajo con KPIs,
-    pricing, fidelización, procesos e integración de sistemas para
-    mejorar resultados comerciales y operativos.
-  </p>
+<div class="stats">
 
-  <div class="grid">
+<div class="stat">
+<h4>4+</h4>
+<p>Marcas operadas en ecosistema delivery</p>
+</div>
 
-    <div class="card">
+<div class="stat">
+<h4>10+</h4>
+<p>Aperturas y acompañamientos operativos</p>
+</div>
 
-      <h4>Growth & Performance</h4>
+<div class="stat">
+<h4>100%</h4>
+<p>Implementación end-to-end de proyectos</p>
+</div>
 
-      <ul>
-        <li>Estrategias de crecimiento y performance comercial.</li>
-        <li>Análisis de KPIs y toma de decisiones.</li>
-        <li>Pricing, descuentos y promociones.</li>
-        <li>Optimización del funnel de conversión.</li>
-      </ul>
+<div class="stat">
+<h4>MLOps</h4>
+<p>Proyecto deployado con FastAPI + Docker + CI/CD</p>
+</div>
 
-    </div>
-
-    <div class="card">
-
-      <h4>Loyalty & Customer Experience</h4>
-
-      <ul>
-        <li>Gestión de app de fidelización.</li>
-        <li>CRM, vouchers y campañas de engagement.</li>
-        <li>Seguimiento de performance y reportería.</li>
-        <li>Experiencia de cliente y retención.</li>
-      </ul>
-
-    </div>
-
-    <div class="card">
-
-      <h4>Operations & Systems</h4>
-
-      <ul>
-        <li>Aperturas end-to-end.</li>
-        <li>Integración Thinkion, Loyaleat y PedidosYa.</li>
-        <li>Capacitación y documentación operativa.</li>
-        <li>Estandarización de procesos.</li>
-      </ul>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 <section>
 
-  <h3>Experiencia destacada</h3>
+<h3>Perfil profesional</h3>
 
-  <div class="timeline">
+<p class="subtitle">
+Profesional orientada a negocio con experiencia en crecimiento,
+operaciones y optimización de performance. Trabajo con KPIs,
+pricing, fidelización, procesos e integración de sistemas para
+mejorar resultados comerciales y operativos.
+</p>
 
-    <div class="card role">
+<div class="grid">
 
-      <h4>
-        El Club de la Milanesa · Growth Strategist | Comercial & Marketing
-      </h4>
+<div class="card">
 
-      <div class="date">
-        Septiembre 2023 - Actualidad
-      </div>
+<h4>Growth & Performance</h4>
 
-      <p>
-        Liderazgo de iniciativas de growth, pricing, loyalty,
-        aperturas, performance y coordinación operativa entre áreas
-        comerciales, técnicas y de negocio.
-      </p>
+<ul>
+<li>Estrategias de crecimiento y performance comercial.</li>
+<li>Análisis de KPIs y toma de decisiones.</li>
+<li>Pricing, descuentos y promociones.</li>
+<li>Optimización del funnel de conversión.</li>
+</ul>
 
-    </div>
+</div>
 
-    <div class="card role">
+<div class="card">
 
-      <h4>
-        Gourmand.Innovation · Fundadora & Responsable de Negocio
-      </h4>
+<h4>Loyalty & Customer Experience</h4>
 
-      <div class="date">
-        Abril 2019 - 2025
-      </div>
+<ul>
+<li>Gestión de app de fidelización.</li>
+<li>CRM, vouchers y campañas de engagement.</li>
+<li>Seguimiento de performance y reportería.</li>
+<li>Experiencia de cliente y retención.</li>
+</ul>
 
-      <p>
-        Desarrollo de emprendimiento gastronómico:
-        modelo de negocio, costos, pricing,
-        operación, logística y adquisición digital.
-      </p>
+</div>
 
-    </div>
+<div class="card">
 
-    <div class="card role">
+<h4>Operations & Systems</h4>
 
-      <h4>
-        Starbucks Coffee SRL · Store Manager - Coffee Master
-      </h4>
+<ul>
+<li>Aperturas end-to-end.</li>
+<li>Integración Thinkion, Loyaleat y PedidosYa.</li>
+<li>Capacitación y documentación operativa.</li>
+<li>Estandarización de procesos.</li>
+</ul>
 
-      <div class="date">
-        Marzo 2015 - Abril 2019
-      </div>
+</div>
 
-      <p>
-        Gestión integral de operación, KPIs financieros,
-        liderazgo de equipos y optimización operativa.
-      </p>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 <section>
 
-  <h3>Proyecto destacado</h3>
+<h3>Experiencia destacada</h3>
 
-  <div class="card">
+<div class="timeline">
 
-    <h4>
-      Proyecto MLOps - Predicción de Riesgo Crediticio
-    </h4>
+<div class="card role">
 
-    <p>
-      Pipeline end-to-end de Machine Learning para predecir pago
-      de créditos. Incluye EDA, feature engineering, XGBoost,
-      monitoreo de modelos, FastAPI, Docker, tests automáticos,
-      SonarCloud, GitHub Actions y deploy en Render.
-    </p>
+<h4>
+El Club de la Milanesa · Growth Strategist | Comercial & Marketing
+</h4>
 
-    <p>
+<div class="date">
+2023 - Actualidad
+</div>
 
-      <a href="https://github.com/Yael-Authier/proyecto-integrador-5"
-      target="_blank">
-      Ver repositorio
-      </a>
+<p>
+Liderazgo de iniciativas de growth, pricing, loyalty,
+aperturas, performance y coordinación operativa entre áreas
+comerciales, técnicas y de negocio.
+</p>
 
-      |
+</div>
 
-      <a href="https://pi-m5-riesgo-crediticio.onrender.com/docs"
-      target="_blank">
-      Ver API deployada
-      </a>
+<div class="card role">
 
-    </p>
+<h4>
+Gourmand.Innovation · Fundadora & Responsable de Negocio
+</h4>
 
-  </div>
+<div class="date">
+2019 - 2025
+</div>
 
-</section>
+<p>
+Desarrollo de emprendimiento gastronómico:
+modelo de negocio, costos, pricing,
+operación, logística y adquisición digital.
+</p>
 
-<section>
+</div>
 
-  <h3>Herramientas & Skills</h3>
+<div class="card role">
 
-  <div class="tags">
+<h4>
+Starbucks Coffee SRL · Store Manager - Coffee Master
+</h4>
 
-    <span class="tag">Growth Strategy</span>
-    <span class="tag">Business Operations</span>
-    <span class="tag">Customer Experience</span>
-    <span class="tag">CRM</span>
-    <span class="tag">KPIs</span>
-    <span class="tag">Power BI</span>
-    <span class="tag">Excel avanzado</span>
-    <span class="tag">SQL</span>
-    <span class="tag">Python</span>
-    <span class="tag">Machine Learning</span>
-    <span class="tag">FastAPI</span>
-    <span class="tag">Docker</span>
-    <span class="tag">GitHub Actions</span>
-    <span class="tag">SonarCloud</span>
-    <span class="tag">Thinkion</span>
-    <span class="tag">Loyaleat</span>
-    <span class="tag">PedidosYa</span>
-    <span class="tag">Mailchimp</span>
-    <span class="tag">Meta Ads</span>
+<div class="date">
+2015 - 2019
+</div>
 
-  </div>
+<p>
+Gestión integral de operación, KPIs financieros,
+liderazgo de equipos y optimización operativa.
+</p>
+
+</div>
+
+</div>
 
 </section>
 
 <section>
 
-  <h3>Contacto</h3>
+<h3>Proyectos destacados</h3>
 
-  <div class="card">
+<div class="projects">
 
-    <p>
-      LinkedIn:
-      <a href="https://www.linkedin.com/in/yael-authier/"
-      target="_blank">
-      linkedin.com/in/yael-authier
-      </a>
-    </p>
+<div class="project">
 
-    <p>
-      GitHub:
-      <a href="https://github.com/Yael-Authier"
-      target="_blank">
-      github.com/Yael-Authier
-      </a>
-    </p>
+<img src="banner.jpg" alt="Proyecto">
 
-    <p>
-      Argentina
-    </p>
+<div class="project-content">
 
-  </div>
+<h4>Proyecto MLOps - Riesgo Crediticio</h4>
+
+<p>
+Pipeline end-to-end de Machine Learning con XGBoost,
+FastAPI, Docker, tests automáticos, SonarCloud y deploy en Render.
+</p>
+
+<p>
+<a href="https://github.com/Yael-Authier/proyecto-integrador-5">
+Repositorio
+</a>
+</p>
+
+</div>
+
+</div>
+
+<div class="project">
+
+<img src="banner.jpg" alt="Loyalty">
+
+<div class="project-content">
+
+<h4>Loyalty & Customer Experience</h4>
+
+<p>
+Implementación de campañas, vouchers,
+fidelización y optimización de experiencia
+para ecosistema omnicanal gastronómico.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h3>Herramientas & Skills</h3>
+
+<div class="tags">
+
+<span class="tag">Growth Strategy</span>
+<span class="tag">Business Operations</span>
+<span class="tag">Customer Experience</span>
+<span class="tag">CRM</span>
+<span class="tag">KPIs</span>
+<span class="tag">Power BI</span>
+<span class="tag">Excel avanzado</span>
+<span class="tag">SQL</span>
+<span class="tag">Python</span>
+<span class="tag">Machine Learning</span>
+<span class="tag">FastAPI</span>
+<span class="tag">Docker</span>
+<span class="tag">GitHub Actions</span>
+<span class="tag">SonarCloud</span>
+<span class="tag">Thinkion</span>
+<span class="tag">Loyaleat</span>
+<span class="tag">PedidosYa</span>
+<span class="tag">Mailchimp</span>
+<span class="tag">Meta Ads</span>
+
+</div>
+
+</section>
+
+<section>
+
+<h3>Contacto</h3>
+
+<div class="card">
+
+<p>
+LinkedIn:
+<a href="https://www.linkedin.com/in/yael-authier/"
+target="_blank">
+linkedin.com/in/yael-authier
+</a>
+</p>
+
+<p>
+GitHub:
+<a href="https://github.com/Yael-Authier"
+target="_blank">
+github.com/Yael-Authier
+</a>
+</p>
+
+<p>
+Argentina
+</p>
+
+</div>
 
 </section>
 
 <footer>
 
-  © 2026 Yael Authier · Growth, Operations & Data
+© 2026 Yael Authier · Growth, Operations & Data
 
 </footer>
 
